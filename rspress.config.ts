@@ -5,10 +5,10 @@ export default defineConfig({
   root: 'docs',
   lang: 'zh',
   base: '/',
-  title: 'Electron-Rsbuild',
+  title: 'electron-rsbuild',
   logo: {
-    light: 'https://assets.rspack.dev/rsbuild/navbar-logo-light.png',
-    dark: 'https://assets.rspack.dev/rsbuild/navbar-logo-dark.png',
+    light: '/electron-rsbuild-light.png',
+    dark: '/electron-rsbuild-light.png',
   },
   ssg: {
     strict: true,
@@ -30,17 +30,17 @@ export default defineConfig({
       },
     ],
     locales: [
-      {
-        lang: 'en',
-        label: 'English',
-        title: 'Rsbuild',
-        description: 'The Rspack-based Electron build tool for the web',
-        editLink: {
-          docRepoBaseUrl:
-            'https://github.com/electron/docs/tree/main/docs/docs',
-          text: '📝 Edit this page on GitHub',
-        },
-      },
+      // {
+      //   lang: 'en',
+      //   label: 'English',
+      //   title: 'Rsbuild',
+      //   description: 'The Rspack-based Electron build tool for the web',
+      //   editLink: {
+      //     docRepoBaseUrl:
+      //       'https://github.com/electron/docs/tree/main/docs/docs',
+      //     text: '📝 Edit this page on GitHub',
+      //   },
+      // },
       {
         lang: 'zh',
         label: '简体中文',

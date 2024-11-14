@@ -1,0 +1,89 @@
+# 快速开始
+
+## 概述
+
+`electron-rsbuild` 是一个基于 rsbuild 构建的工具，基于核心插件的方式，尊重 rsbuild API，配置，提供一套完整的项目工程能力：
+
+- 一套指令，可快速创建 `electron-rsbuild` 模板工程。
+- 预设配置了主线程、渲染器、预加载的 rsbuild 配置。
+- 插件化实现核心能力，你也可以使用 `electron-rsbuild` 提供的插件或配置，直接跑 electron 项目，而不用安装 `electron-rsbuid`。
+
+可以在 [介绍](/guide/introduction) 章节背后故事。
+
+## 安装
+
+:::tip 注意
+本项目没有经过广泛的测试，请谨慎使用，建议：node 18+、rsbuild 1.0+
+:::
+
+### 创建 electron-rsbuild 项目
+
+:::tip 注意
+通过 [electron-rsbuild](https://github.com/electron/electron) 社区提供的命令行快速创建模板
+:::
+
+```bash
+pnpm create electron-rsbuild
+```
+
+然后按照提示即可，提下为常用命令：
+
+- `pnpm run dev` 启动开发环境
+- `pnpm run build` 打包项目
+- `pnpm run preview` 启动预览产物
+
+### React 插件
+
+对于 react 项目来说，需要手动安装 `@rsbuild/plugin-react`:
+
+```bash
+pnpm add  @rsbuild/plugin-react
+```
+
+这个插件由 `rsbuid` 官方提供，具体[参考文档](https://rsbuild.dev/zh/plugins/list/plugin-react)。
+
+### Vue 插件
+
+TODO
+
+### 模板
+
+目前提供了以下模板：
+
+| 模板           | 描述     | 可选       |
+| -------------- | -------- | ---------- |
+| electron-react | React 18 | Typescript |
+| electron-vue   | Vue 3    | TODO       |
+
+### rsbuild 项目改造
+
+如果不想用 `electron-rsbuild` 提供的脚手架，你也可以安装以下三个配置插件化后的`rsbuild`插件，启动 rsbuild：
+
+- `@electron-rsbuild/plugin-main`
+- `@electron-rsbuild/plugin-preload`
+- `@electron-rsbuild/plugin-renderer`
+
+## 命令行
+
+```json title="package.json"
+{
+  "scripts": {
+    // 启动开发服务器
+    "dev": "electron-rsbuild dev",
+    // 构建用于生产的应用
+    "build": "electron-rsbuild build",
+    // 在本地预览生产版本
+    "preview": "electron-rsbuild preview"
+  }
+}
+```
+
+## 核心 npm 包
+
+### `@electron-rsbuild/core`
+
+`electron-rsbuild` 核心包，插件化调用开发环境，CLI 命令等
+
+### `create-electron-rsbuild`
+
+用于创建 `electron-rsbuild` 项目模板

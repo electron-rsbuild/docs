@@ -11,7 +11,7 @@
   },
   {
     "text": "插件",
-    "link": "/plugins/list",
+    "link": "/plugins/list/",
     "activeMatch": "/plugins/"
   }
 ]

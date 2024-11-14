@@ -1,0 +1,25 @@
+# 总览
+
+`electron-rsbuild` 配置文件为 `electron.rsbuild.config.ts`，其配置示例如下：
+
+```ts
+import { defineConfig } from 'electron-rsbuild';
+import { pluginReact } from '@rsbuild/plugin-react';
+export default defineConfig({
+  environments: {
+    // main 主进程
+    main: {},
+    //preload
+    preload: {},
+    //renderer 渲染进程
+    renderer: {
+      // react 项目必须安装，否则无法启动
+      plugins: [pluginReact()],
+    },
+  },
+});
+```
+
+特别注意，`react` 项目中的 `rsbuild` 插件 `@rsbuild/plugin-react` 需要手动安装，为了不干扰 `rsbuild` 配置，此处不提供
+
+配置项请参考 `rsbuild` 相关 [config 章节](https://rsbuild.dev/zh/config/index)

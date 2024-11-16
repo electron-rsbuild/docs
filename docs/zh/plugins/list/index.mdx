@@ -4,8 +4,64 @@
 
 ## 使用插件
 
+`electron-rsbuild` 提供插件，允许用户在不安装整套配置情况下，可用`rsbuild`启动 electron 项目。
+
+安装以下插件：
+
+```shell
+pnpm add -D @rsbuild/plugin-main @rsbuild/plugin-preload @rsbuild/plugin-renderer
+```
+
+在 `rsbuild.config.ts` 中配置：
+
+```ts
+import { resolve } from 'path';
+import { defineConfig } from '@rsbuild/core';
+import { pluginReact } from '@rsbuild/plugin-react';
+import { mainPlugin } from '@electron-rsbuild/plugin-main';
+import { preloadPlugin } from '@electron-rsbuild/plugin-preload';
+import { rendererPlugin } from '@electron-rsbuild/plugin-renderer';
+
+export default defineConfig({
+  root: resolve(__dirname, '.'),
+  environments: {
+    // main
+    main: {
+      plugins: [mainPlugin()],
+    },
+    // preload
+    preload: {
+      plugins: [preloadPlugin()],
+    },
+
+    // renderer
+    renderer: {
+      plugins: [pluginReact(), rendererPlugin()],
+    },
+  },
+});
+```
+
 ### plugin-main 插件
+
+处理 electron main 模块，可以导出默认配置：
+
+```ts
+import { mainConfig } from '@electron-rsbuild/plugin-main';
+```
 
 ### plugin-preload 插件
 
+处理 electron preload 模块，可以导出默认配置：
+
+```ts
+import { preloadPlugin } from '@electron-rsbuild/plugin-preload';
+```
+
 ### plugin-renderer 插件
+
+处理 electron renderer 模块，可以导出默认配置：
+
+```ts
+import { rendererPlugin } from '@electron-rsbuild/plugin-renderer';
+```

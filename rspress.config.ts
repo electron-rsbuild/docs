@@ -50,8 +50,7 @@ export default defineConfig({
         nextPageText: '下一页',
         description: '基于 Rspack 的 Electron 构建工具',
         editLink: {
-          docRepoBaseUrl:
-            'https://github.com/electron-rsbuild/docs/tree/main/docs/docs',
+          docRepoBaseUrl: 'https://github.com/electron-rsbuild/docs/tree/main/docs/docs',
           text: '📝 在 GitHub 上编辑此页',
         },
       },
@@ -61,8 +60,7 @@ export default defineConfig({
     dev: {
       lazyCompilation: true,
     },
-    plugins: [
-    ],
+    plugins: [],
     source: {
       alias: {
         '@components': path.join(__dirname, '@components'),
@@ -74,6 +72,7 @@ export default defineConfig({
       open: 'http://localhost:<port>/',
     },
     html: {
+      // favicon: 'docs/public/logo.png',
       appIcon: {
         name: 'Electron-Rsbuild',
         icons: [

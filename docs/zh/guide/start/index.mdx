@@ -57,11 +57,41 @@ TODO
 
 ### rsbuild 项目改造
 
-如果不想用 `electron-rsbuild` 提供的脚手架，你也可以安装以下三个配置插件化后的`rsbuild`插件，启动 rsbuild：
+如果不想用 `electron-rsbuild` 提供的脚手架，你也可以安装以下三个配置插件化后的 `rsbuild` 插件，启动 `rsbuild`：
 
 - `@electron-rsbuild/plugin-main`
 - `@electron-rsbuild/plugin-preload`
 - `@electron-rsbuild/plugin-renderer`
+
+在 `rsbuild.config.ts` 中配置：
+
+```ts
+import { resolve } from 'path';
+import { defineConfig } from '@rsbuild/core';
+import { pluginReact } from '@rsbuild/plugin-react';
+import { mainPlugin } from '@electron-rsbuild/plugin-main';
+import { preloadPlugin } from '@electron-rsbuild/plugin-preload';
+import { rendererPlugin } from '@electron-rsbuild/plugin-renderer';
+
+export default defineConfig({
+  root: resolve(__dirname, '.'),
+  environments: {
+    // main
+    main: {
+      plugins: [mainPlugin()],
+    },
+    // preload
+    preload: {
+      plugins: [preloadPlugin()],
+    },
+
+    // renderer
+    renderer: {
+      plugins: [pluginReact(), rendererPlugin()],
+    },
+  },
+});
+```
 
 ## 命令行
 

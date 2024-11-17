@@ -72,16 +72,16 @@ export default defineConfig({
       open: 'http://localhost:<port>/',
     },
     html: {
-      // favicon: 'docs/public/logo.png',
+      favicon: 'https://electron-rsbuild.org/logo-org.png',
       appIcon: {
         name: 'Electron-Rsbuild',
         icons: [
           {
-            src: 'https://assets.rspack.dev/rsbuild/rsbuild-logo-192x192.png',
+            src: 'https://electron-rsbuild.org/logo-org.png',
             size: 192,
           },
           {
-            src: 'https://assets.rspack.dev/rsbuild/rsbuild-logo-512x512.png',
+            src: 'https://electron-rsbuild.org/logo-org.png',
             size: 512,
           },
         ],

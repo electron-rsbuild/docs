@@ -12,12 +12,30 @@ Documentation for Electron Rsbuild
 
 ## Quick Start
 
-Create `Electron-rsbuild` project:
+Create the `Electron-rsbuild` project:
 
 pnpm:
 
 ```shell
-pnpm create electron-rsbuild@latest
+pnpm create electron-rsbuild@0.0.10
+```
+
+## Playground snapshot
+
+Use `npm create electron-rsbuild@0.0.10` create a `electron-rsbuild` project:
+
+![playground-install-npm](/docs//public//playground/playground-install-npm.png)
+
+Use `pnpm run dev` launch electron:
+![playground-demo](/docs//public//playground/playground-demo.png)
+
+## Configuring .npmrc
+
+For Chinese users, consider adding `.npmrc` to the root directory to speed up installation:
+
+```yml
+electron_mirror=https://npmmirror.com/mirrors/electron/
+electron_builder_binaries_mirror=https://npmmirror.com/mirrors/electron-builder-binaries/
 ```
 
 ## Reference

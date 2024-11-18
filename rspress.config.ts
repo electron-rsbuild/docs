@@ -26,7 +26,7 @@ export default defineConfig({
       {
         icon: 'github',
         mode: 'link',
-        content: 'https://github.com/veaba/electron-rsbuild',
+        content: 'https://github.com/electron-rsbuild/electron-rsbuild',
       },
     ],
     locales: [

@@ -2,7 +2,7 @@
 
 ## 项目由来
 
-最近 2 年，涌现了很多基于 rust 开发的具有代表性的基建工具，诸如：`rspack`、`rsbuild`、`rolldown` 等，而作为从 `0.x` 过来的 `rspack` 用户，也一直在关注着这方面的信息，随着底层脱胎于 `rspack`，对标 `vite` 的新一代开箱即用工具 `rsbuild@ 1.0` 推出日渐成熟，不免得横向对比了其同类型基于构建工具 `electron-vite`，于是尝试能否基于 rsbuild 开发一个相关的 electron 构建工具。
+最近 2 年，涌现了很多基于 rust 开发的具有代表性的基建工具，诸如：`rspack`、`rsbuild`、`rolldown` 等，而作为从 `0.x` 过来的 `rspack` 用户，也一直在关注着这方面的信息，随着底层脱胎于 `rspack`，对标 `vite` 的新一代开箱即用工具 `rsbuild@ 1.0` 推出日渐成熟，不免得横向对比了其同类型基于构建工具 `electron-vite`，于是尝试能否基于 `rsbuild` 开发一个相关的 `electron` 构建工具。
 
 Vite 的缺点在于其在早起热更新的缓慢的问题，尽管作者在最近做了很多的改进，但其根本的原因是，开发环境和生产环境的产物是不一样的。
 
@@ -10,5 +10,5 @@ Vite 的缺点在于其在早起热更新的缓慢的问题，尽管作者在最
 
 ## Electron-Rsbuild 解决了什么问题
 
-- 基于 rsbuild 多套环境一致性产物输出
-- 同时提供一套 rsbuild 生态的 electron 环境工程配置
+- 基于 `rsbuild` 多套环境一致性产物输出
+- 同时提供一套 `rsbuild` 生态的 `electron` 环境工程配置

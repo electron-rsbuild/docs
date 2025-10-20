@@ -9,7 +9,7 @@
 安装以下插件：
 
 ```shell
-pnpm add -D @rsbuild/plugin-main @rsbuild/plugin-preload @rsbuild/plugin-renderer
+pnpm add -D @electron-rsbuild/plugin-main @electron-rsbuild/plugin-preload @electron-rsbuild/plugin-renderer
 ```
 
 在 `rsbuild.config.ts` 中配置：
@@ -65,3 +65,91 @@ import { preloadPlugin } from '@electron-rsbuild/plugin-preload';
 ```ts
 import { rendererPlugin } from '@electron-rsbuild/plugin-renderer';
 ```
+
+## 插件入参
+
+:::tip note
+当前，仅在以 `plugin-*` 作为纯插件在你的 `rsbuild` 项目中生效。
+:::
+
+[electron-rsbuild >=0.0.12 ](https://github.com/electron-rsbuild/electron-rsbuild/pull/5/files) 允许用户传入自定义的插件参数。
+
+```ts
+export interface EnvironmentConfig {
+  /**
+   * Options for local development.
+   */
+  dev?: Pick<DevConfig, AllowedEnvironmentDevKeys>;
+  /**
+   * Options for HTML generation.
+   */
+  html?: HtmlConfig;
+  /**
+   * Options for the low-level tools.
+   */
+  tools?: ToolsConfig;
+  /**
+   * Options for module resolution.
+   */
+  resolve?: ResolveConfig;
+  /**
+   * Options for input source code.
+   */
+  source?: SourceConfig;
+  /**
+   * Options for build outputs.
+   */
+  output?: OutputConfig;
+  /**
+   * Options for Web security.
+   */
+  security?: SecurityConfig;
+  /**
+   * Options for build performance and runtime performance.
+   */
+  performance?: PerformanceConfig;
+  /**
+   * Options for module federation.
+   */
+  moduleFederation?: ModuleFederationConfig;
+  /**
+   * Configure Rsbuild plugins.
+   */
+  plugins?: RsbuildPlugins;
+}
+```
+
+在你的 `rsbuild.config.ts` 中做如下变更：
+
+```diff
+import { resolve } from 'node:path';
+import { defineConfig } from '@rsbuild/core';
+import { pluginReact } from '@rsbuild/plugin-react';
+import { mainPlugin } from '@electron-rsbuild/plugin-main';
+import { preloadPlugin } from '@electron-rsbuild/plugin-preload';
+import { rendererPlugin } from '@electron-rsbuild/plugin-renderer';
+
+export default defineConfig({
+  root: resolve(__dirname, '.'),
+  environments: {
+    // main
+    main: {
+-      plugins: [mainPlugin()],
++      plugins: [mainPlugin({
++         html: { title: "hello world by @electron-rsbuild"},
++   })],
+    },
+    // preload
+    preload: {
+      plugins: [preloadPlugin()],
+    },
+
+    // renderer
+    renderer: {
+      plugins: [pluginReact(), rendererPlugin()],
+    },
+  },
+});
+```
+
+参数需要符合 `@rsbuild/core` 中的 [`EnvironmentConfig`](https://github.com/web-infra-dev/rsbuild/blob/main/packages/core/src/types/config.ts#L1891) 类型定义，用户传入的参数将会被合并到其中。

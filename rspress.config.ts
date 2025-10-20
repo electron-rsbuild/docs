@@ -3,7 +3,7 @@ import path from 'node:path';
 
 export default defineConfig({
   root: 'docs',
-  lang: 'zh',
+  lang: 'en',
   base: '/',
   title: 'electron-rsbuild',
   logo: {
@@ -30,17 +30,17 @@ export default defineConfig({
       },
     ],
     locales: [
-      // {
-      //   lang: 'en',
-      //   label: 'English',
-      //   title: 'Rsbuild',
-      //   description: 'The Rspack-based Electron build tool for the web',
-      //   editLink: {
-      //     docRepoBaseUrl:
-      //       'https://github.com/electron/docs/tree/main/docs/docs',
-      //     text: '📝 Edit this page on GitHub',
-      //   },
-      // },
+      {
+        lang: 'en',
+        label: 'English',
+        title: 'Rsbuild',
+        description: 'The Rspack-based Electron build tool for the web',
+        editLink: {
+          docRepoBaseUrl:
+            'https://github.com/electron/docs/tree/main/docs/docs',
+          text: '📝 Edit this page on GitHub',
+        },
+      },
       {
         lang: 'zh',
         label: '简体中文',

@@ -1,0 +1,12 @@
+[
+  {
+    "type": "dir",
+    "name": "list",
+    "label": "Plugin List"
+  },
+  {
+    "type": "dir",
+    "name": "dev",
+    "label": "Plugin Development"
+  }
+]

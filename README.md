@@ -17,12 +17,12 @@ Create the `Electron-rsbuild` project:
 pnpm:
 
 ```shell
-pnpm create electron-rsbuild@0.0.10
+pnpm create electron-rsbuild@0.0.12
 ```
 
 ## Playground snapshot
 
-Use `npm create electron-rsbuild@0.0.10` create a `electron-rsbuild` project:
+Use `npm create electron-rsbuild@0.0.12` create a `electron-rsbuild` project:
 
 ![playground-install-npm](/docs//public//playground/playground-install-npm.png)
 

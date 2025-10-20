@@ -1,0 +1,114 @@
+# Quick Start
+
+## Overview
+
+`electron-rsbuild` is a tool built on rsbuild, based on a core plugin approach, respecting rsbuild APIs and configuration, providing a complete set of project capabilities:
+
+- A set of commands to quickly create `electron-rsbuild` template projects.
+- Pre-configured rsbuild configurations for the main process, renderer, and preload scripts.
+- Core capabilities implemented through plugins. You can also use the plugins or configurations provided by `electron-rsbuild` to run an Electron project directly without installing `electron-rsbuild`.
+
+You can read the backstory in the [Introduction](/guide/introduction) chapter.
+
+## Installation
+
+:::tip Note
+This project has not undergone extensive testing. Please use with caution. Recommendations: Node 18+, rsbuild 1.0+
+:::
+
+### Create an electron-rsbuild project
+
+:::tip Note
+Quickly create a template using the command line tool provided by the [electron-rsbuild](https://github.com/electron/electron) community.
+:::
+
+```bash
+pnpm create electron-rsbuild@0.0.12
+
+```
+
+## React Plugin
+
+For React projects, you need to manually install @rsbuild/plugin-react:
+
+```shell
+pnpm add @rsbuild/plugin-react
+```
+
+This plugin is provided by the official rsbuild team. Please [refer to the documentation](https://rsbuild.dev/zh/plugins/list/plugin-react) for details.
+
+### Vue Plugin
+
+TODO
+
+### Templates
+
+The following templates are currently available:
+
+| Template       | Description | Options    |
+| -------------- | ----------- | ---------- |
+| electron-react | React 18    | Typescript |
+| electron-vue   | Vue 3       | TODO       |
+
+### rsbuild Project Modification
+
+If you don't want to use the scaffold provided by `electron-rsbuild`, you can also install the following three configured and plugin-based `rsbuild` plugins to start `rsbuild`:
+
+- `@electron-rsbuild/plugin-main`
+- `@electron-rsbuild/plugin-preload`
+- `@electron-rsbuild/plugin-renderer`
+
+Configure in `rsbuild.config.ts`:
+
+```ts
+import { resolve } from 'path';
+import { defineConfig } from '@rsbuild/core';
+import { pluginReact } from '@rsbuild/plugin-react';
+import { mainPlugin } from '@electron-rsbuild/plugin-main';
+import { preloadPlugin } from '@electron-rsbuild/plugin-preload';
+import { rendererPlugin } from '@electron-rsbuild/plugin-renderer';
+
+export default defineConfig({
+  root: resolve(__dirname, '.'),
+  environments: {
+    // main
+    main: {
+      plugins: [mainPlugin()],
+    },
+    // preload
+    preload: {
+      plugins: [preloadPlugin()],
+    },
+
+    // renderer
+    renderer: {
+      plugins: [pluginReact(), rendererPlugin()],
+    },
+  },
+});
+```
+
+## Command Line
+
+```json title="package.json"
+{
+  "scripts": {
+    // Start development server
+    "dev": "electron-rsbuild dev",
+    // Build application for production
+    "build": "electron-rsbuild build",
+    // Preview production build locally
+    "preview": "electron-rsbuild preview"
+  }
+}
+```
+
+## Core npm Packages
+
+### `@electron-rsbuild/core`
+
+The core package of electron-rsbuild, providing plugin-based development environment invocation, CLI commands, etc.
+
+### `create-electron-rsbuild`
+
+Used to create electron-rsbuild project templates

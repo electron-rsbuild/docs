@@ -1,1 +1,152 @@
-# 总览
+# Overview
+
+The plugin system is based on rsbuild. Please refer to the [rsbuild plugins](https://rsbuild.dev/en/plugins/list/index) section for implementation details.
+
+## Using Plugins
+
+`electron-rsbuild` provides plugins that allow users to start Electron projects using `rsbuild` without installing the full configuration setup.
+
+Install the following plugins:
+
+```shell
+pnpm add -D @electron-rsbuild/plugin-main @electron-rsbuild/plugin-preload @electron-rsbuild/plugin-renderer
+```
+
+Configure in `rsbuild.config.ts`:
+
+```ts
+import { resolve } from 'path';
+import { defineConfig } from '@rsbuild/core';
+import { pluginReact } from '@rsbuild/plugin-react';
+import { mainPlugin } from '@electron-rsbuild/plugin-main';
+import { preloadPlugin } from '@electron-rsbuild/plugin-preload';
+import { rendererPlugin } from '@electron-rsbuild/plugin-renderer';
+
+export default defineConfig({
+  root: resolve(__dirname, '.'),
+  environments: {
+    // main
+    main: {
+      plugins: [mainPlugin()],
+    },
+    // preload
+    preload: {
+      plugins: [preloadPlugin()],
+    },
+
+    // renderer
+    renderer: {
+      plugins: [pluginReact(), rendererPlugin()],
+    },
+  },
+});
+```
+
+### plugin-main
+
+Handles the Electron main process module. You can import the default configuration:
+
+```ts
+import { mainConfig } from '@electron-rsbuild/plugin-main';
+```
+
+### plugin-preload
+
+Handles the Electron preload script module. You can import the default configuration:
+
+```ts
+import { preloadPlugin } from '@electron-rsbuild/plugin-preload';
+```
+
+### plugin-renderer
+
+Handles the Electron renderer process module. You can import the default configuration:
+
+
+```ts
+import { rendererPlugin } from '@electron-rsbuild/plugin-renderer';
+```
+
+## Plugin Parameters
+
+[#5 v0.0.12](https://github.com/electron-rsbuild/electron-rsbuild/pull/5/files) allows users to pass plugin parameters.
+
+```ts
+export interface EnvironmentConfig {
+  /**
+   * Options for local development.
+   */
+  dev?: Pick<DevConfig, AllowedEnvironmentDevKeys>;
+  /**
+   * Options for HTML generation.
+   */
+  html?: HtmlConfig;
+  /**
+   * Options for the low-level tools.
+   */
+  tools?: ToolsConfig;
+  /**
+   * Options for module resolution.
+   */
+  resolve?: ResolveConfig;
+  /**
+   * Options for input source code.
+   */
+  source?: SourceConfig;
+  /**
+   * Options for build outputs.
+   */
+  output?: OutputConfig;
+  /**
+   * Options for Web security.
+   */
+  security?: SecurityConfig;
+  /**
+   * Options for build performance and runtime performance.
+   */
+  performance?: PerformanceConfig;
+  /**
+   * Options for module federation.
+   */
+  moduleFederation?: ModuleFederationConfig;
+  /**
+   * Configure Rsbuild plugins.
+   */
+  plugins?: RsbuildPlugins;
+}
+```
+e.g.：
+
+```diff
+import { resolve } from 'path';
+import { defineConfig } from '@rsbuild/core';
+import { pluginReact } from '@rsbuild/plugin-react';
+import { mainPlugin } from '@electron-rsbuild/plugin-main';
+import { preloadPlugin } from '@electron-rsbuild/plugin-preload';
+import { rendererPlugin } from '@electron-rsbuild/plugin-renderer';
+
+export default defineConfig({
+  root: resolve(__dirname, '.'),
+  environments: {
+    // main
+    main: {
+-      plugins: [mainPlugin()],
++      plugins: [mainPlugin({
++         html: { title: "hello world by @electron-rsbuild"},
++   })],
+    },
+    // preload
+    preload: {
+      plugins: [preloadPlugin()],
+    },
+
+    // renderer
+    renderer: {
+      plugins: [pluginReact(), rendererPlugin()],
+    },
+  },
+});
+```
+
+
+The parameters must conform to the [`EnvironmentConfig`](https://github.com/web-infra-dev/rsbuild/blob/main/packages/core/src/types/config.ts#L1891) type definition in `@rsbuild/core`. The parameters passed by the user will be merged into it.

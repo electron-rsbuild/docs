@@ -69,7 +69,13 @@ import { rendererPlugin } from '@electron-rsbuild/plugin-renderer';
 
 ## Plugin Parameters
 
-[#5 v0.0.12](https://github.com/electron-rsbuild/electron-rsbuild/pull/5/files) allows users to pass plugin parameters.
+:::tip Note
+
+Currently, it only takes effect as a pure plugin with `plugin-*` in your `rsbuild` project.
+
+:::
+
+[electron-rsbuild >=0.0.12](https://github.com/electron-rsbuild/electron-rsbuild/pull/5/files) allows users to pass plugin parameters.
 
 ```ts
 export interface EnvironmentConfig {
@@ -115,7 +121,7 @@ export interface EnvironmentConfig {
   plugins?: RsbuildPlugins;
 }
 ```
-e.g.：
+Make the following changes in your `rsbuild.config.ts`:
 
 ```diff
 import { resolve } from 'path';

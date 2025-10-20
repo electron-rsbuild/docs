@@ -1,6 +1,6 @@
 # Introduction
 
-## Project Origin
+## Why Electron-Rsbuild?
 
 Over the past two years, many representative infrastructure tools built with Rust have emerged, such as `rspack`, `rsbuild`, `rolldown`, etc. As a `rspack` user since the `0.x` versions, I've been closely following developments in this space. With the maturation of `rsbuild@1.0` - a next-generation, out-of-the-box tool built on top of `rspack` that positions itself as an alternative to `vite` - I naturally compared it with similar build tools like `electron-vite`. This led me to explore whether it would be possible to develop an `Electron` build tool based on rsbuild.
 
